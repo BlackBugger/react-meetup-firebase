@@ -14,13 +14,16 @@ const MeetupContext = createContext({
   addFavorite: (favoriteMeetup) => {},
   removeFavorite: (meetupId) => {},
   itemIsFavoriteForAllMeetups: (meetupId) => {},
+  itemLoading: []
 });
 
 export function MeetupsContextProvider(props) {
   const [loadedMeetups, setLoadedMeetups] = useState([]);
   const meetupsCollectionRef = collection(db, 'meetups');
-
+const [isLoading, setIsLoading] = useState();
+console.log(isLoading);
   const getLoadedMeetups = async () => {
+    setIsLoading(true)
     const data = await getDocs(meetupsCollectionRef);
     setLoadedMeetups(
       data.docs.map((doc) => ({
@@ -28,6 +31,7 @@ export function MeetupsContextProvider(props) {
         id: doc.id,
       }))
     );
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -64,6 +68,7 @@ export function MeetupsContextProvider(props) {
     reloadMeetups: reloadMeetups,
     removeFavorite: removeFavoriteHandler,
     itemIsFavoriteForAllMeetups: itemIsFavoriteForAllMeetupsHandler,
+    itemLoading: isLoading
   };
 
   return (

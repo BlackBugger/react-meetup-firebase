@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import MeetupList from '../components/meetups/MeetupList';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 import FavoritesContext from '../store/favorites-content';
+import MeetupContext from '../store/meetups-content';
 
 function FavoritesPage() {
   const [loadedFavorites, setLoadedFavorites] = useState([]);
-
   const favoritesCtx = useContext(FavoritesContext);
+  const meetupCtx = useContext(MeetupContext);
 
   useEffect(() => {
     fetch(
@@ -40,6 +42,9 @@ function FavoritesPage() {
   return (
     <section>
       <h1>My Favorites</h1>
+      <div className="center">
+        {meetupCtx.itemLoading && <LoadingSpinner />}
+      </div>
       {content}
     </section>
   );
