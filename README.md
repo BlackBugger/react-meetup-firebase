@@ -6,7 +6,7 @@
 
 ## Links
 
-- Live Site URL: [meetup-locations-project](meetup-locations-project.netlify.app)
+- Live Site URL: [meetup-locations-project](https://meetup-locations-project.netlify.app)
 
 ## Built with
 
