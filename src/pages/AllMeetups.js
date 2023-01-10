@@ -9,17 +9,15 @@ function AllMeetupsPage(props) {
 
   const meetupCtx = useContext(MeetupContext);
 
-
-
-
   return (
     <section>
-      <h1>All Meetups</h1>
      <div className='center'>
      {meetupCtx.itemLoading && <LoadingSpinner/>}
       </div>
-      
-      <MeetupList meetups={meetupCtx.meetups} />
+      <div className=''>
+         <MeetupList meetups={meetupCtx.meetups} />
+      </div>
+     
     </section>
   );
 }
